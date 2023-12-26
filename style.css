@@ -10,7 +10,8 @@ a {
 }
 
 header {
-    background-color:#FFBBBB A890FE;
+    background-color:#FFBBBB #A890FE;
+    
     color: #105cb3;
     padding: 25px 35px;
     display: flex;
