@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title >Shahadat Khan's Portfolio</title>
-    <link rel="icon" href="Shahadat-khan.jpg"  >
-</head>
+    <title>Shahadat Khan's Portfolio</title>
+    <link rel="icon" href="Shahadat-khan.jpg">
     <style>
         * {
             margin: 0;
@@ -17,12 +14,546 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0f172a;
+            background: #e8f4f8;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        /* Decorative Background Elements */
+        .background {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+        }
+
+        .bg-circle1 {
+            width: 500px;
+            height: 500px;
+            background: #5b9fd8;
+            top: -150px;
+            right: -100px;
+        }
+
+        .bg-circle2 {
+            width: 400px;
+            height: 400px;
+            background: #7eb5e0;
+            bottom: -100px;
+            left: -80px;
+        }
+
+        .bg-circle3 {
+            width: 300px;
+            height: 300px;
+            background: #a8d5f0;
+            top: 40%;
+            right: 10%;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 100;
+        }
+
+        header a {
+            color: #1e293b;
+            text-decoration: none;
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .color-style {
+            color: #5b9fd8;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: #475569;
+            text-decoration: none;
+            font-size: 1em;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #5b9fd8;
+        }
+
+        /* Main Content */
+        main {
+            position: relative;
+            z-index: 1;
+            padding-top: 80px;
+        }
+
+        /* Hero Section */
+        #hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 50px;
+            gap: 50px;
+            background: #ffffff;
+        }
+
+        .left-content {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .left-content h1 {
+            font-size: 3em;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .left-content p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #475569;
+            margin-bottom: 30px;
+        }
+
+        .resume {
+            display: inline-block;
+            padding: 12px 30px;
+            margin-right: 15px;
+            margin-bottom: 10px;
+            background: #5b9fd8;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .resume:hover {
+            background: #4a8bc2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(91, 159, 216, 0.3);
+        }
+
+        .right-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .right-content img {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            border: 5px solid #5b9fd8;
+            box-shadow: 0 10px 40px rgba(91, 159, 216, 0.2);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            padding: 80px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #f8fbfd;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 40px 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(91, 159, 216, 0.15);
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #5b9fd8;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+
+        /* Skills Section */
+        #skills {
+            padding: 80px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+        }
+
+        #skills h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #1e293b;
+            margin-bottom: 50px;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill {
+            background: #f8fbfd;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #5b9fd8;
+            transition: all 0.3s;
+        }
+
+        .skill:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(91, 159, 216, 0.15);
+        }
+
+        .skill h2 {
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .skill p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Badges */
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            padding: 50px;
+            background: #f8fbfd;
+        }
+
+        .badge {
+            background: #ffffff;
+            color: #5b9fd8;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            font-weight: 600;
+            border: 2px solid #5b9fd8;
+            transition: all 0.3s;
+        }
+
+        .badge:hover {
+            background: #5b9fd8;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Projects Section */
+        #CERTIFICATIONS {
+            padding: 80px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+        }
+
+        #CERTIFICATIONS h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #1e293b;
+            margin-bottom: 50px;
+        }
+
+        .project {
+            background: #f8fbfd;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #5b9fd8;
+        }
+
+        .project h3 {
+            color: #1e293b;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .project p {
+            color: #64748b;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project a {
+            color: #5b9fd8;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .project a:hover {
+            color: #4a8bc2;
+            text-decoration: underline;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 80px 50px;
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f8fbfd;
+        }
+
+        #contact h2 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #1e293b;
+            margin-bottom: 30px;
+        }
+
+        #contact p {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+            color: #64748b;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        input, textarea {
+            padding: 15px;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            color: #1e293b;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #5b9fd8;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .message {
+            padding: 15px 40px;
+            background: #5b9fd8;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .message:hover {
+            background: #4a8bc2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(91, 159, 216, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #ffffff;
+            color: #64748b;
+            margin-top: 50px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            nav ul {
+                gap: 15px;
+            }
+
+            #hero {
+                flex-direction: column;
+                padding: 30px;
+            }
+
+            .left-content h1 {
+                font-size: 2em;
+            }
+
+            .right-content img {
+                width: 250px;
+                height: 250px;
+            }
+
+            .stats-section {
+                grid-template-columns: 1fr;
+                padding: 50px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decorative Background -->
+    <div class="background">
+        <div class="bg-circle bg-circle1"></div>
+        <div class="bg-circle bg-circle2"></div>
+        <div class="bg-circle bg-circle3"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <a href="#"><span class="color-style">S</span>hahadat <span class="color-style">K</span>han</a>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#CERTIFICATIONS">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <div class="left-content">
+                <h1>Hi, I'm Shahadat Khan Rabbi</h1>
+                <p>Results-driven professional with 13+ years of experience in customer service excellence, spare operations management, and technical auditing. ISO 9001:2015 Certified Internal Auditor with proven expertise in optimizing inventory control systems, conducting multi-branch compliance audits, and enhancing customer satisfaction across mobile, IT, and home appliance sectors.</p>
+                <a href="MD. SHAHADAT KHAN RABBI - CV (1).pdf" class="resume" target="_blank">Download Resume</a>
+                <a href="qr.html" class="resume" target="_blank">QR Generator</a>
+            </div>
+            <div class="right-content">
+                <img src="Shahadat-Khan.jpg" alt="Shahadat Khan">
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <div class="stat">
+                <div class="stat-number">13+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">60+</div>
+                <div class="stat-label">Branch Audits</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Top Brands</div>
+            </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="badges">
+            <span class="badge">ISO 9001:2015 Certified</span>
+            <span class="badge">Inventory Control</span>
+            <span class="badge">Quality Auditing</span>
+            <span class="badge">Supply Chain Management</span>
+            <span class="badge">ERP Systems</span>
+            <span class="badge">Team Leadership</span>
+        </div>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h1>Area of Expertise</h1>
+            <div class="skills-container">
+                <div class="skill">
+                    <h2>Customer Service Excellence</h2>
+                    <p>13+ years delivering exceptional customer experiences across mobile, IT, and home appliance sectors with proven track record of improving satisfaction scores.</p>
+                </div>
+                <div class="skill">
+                    <h2>Team Leadership & Operations</h2>
+                    <p>Managed multi-branch operations, led cross-functional teams, and implemented process improvements driving operational efficiency.</p>
+                </div>
+                <div class="skill">
+                    <h2>Technical Auditing & Compliance</h2>
+                    <p>Conducted 60+ comprehensive audits ensuring ISO 9001:2015 compliance, asset verification, and quality standards adherence.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="CERTIFICATIONS">
+            <h2>My Projects</h2>
+            <div class="project">
+                <h3>Professional Portfolio Website</h3>
+                <p>Modern responsive portfolio built with HTML5, CSS3, and JavaScript featuring clean design and smooth interactions.</p>
+                <a href="https://github.com/shahadatk071/Shahadat-CV.git" target="_blank">GitHub Link</a> | <a href="https://github.com/shahadatk071/Shahadat-CV.git" target="_blank">Live Demo</a>
+            </div>
+            <div class="project">
+                <h3>QR Code Generator</h3>
+                <p>Interactive QR code generator tool for creating custom QR codes with real-time preview and download functionality.</p>
+                <a href="https://github.com/" target="_blank">GitHub Link</a> | <a href="qr.html" target="_blank">Live Demo</a>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Info</h2>
+            <p>Thanks for your kind contact. We'll reply very soon!</p>
+            <form action="https://formspree.io/f/xwkdwjnp" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="text" name="mobile" placeholder="Your Mobile No." required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message..." required></textarea>
+                <button class="message" type="submit">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Shahadat Khan. All rights reserved.</p>
+    </footer>
+</body>
+</html>
             overflow: hidden;
         }
 
