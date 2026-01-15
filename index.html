@@ -151,6 +151,9 @@
             border-radius: 8px;
             font-weight: 600;
             transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
         }
 
         .resume:hover {
@@ -171,6 +174,119 @@
             border-radius: 50%;
             border: 5px solid #5b9fd8;
             box-shadow: 0 10px 40px rgba(91, 159, 216, 0.2);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            margin: 10% auto;
+            padding: 40px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-content h2 {
+            color: #1e293b;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .modal-content p {
+            color: #64748b;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .modal-form input {
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        .modal-form input:focus {
+            outline: none;
+            border-color: #5b9fd8;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .modal-buttons button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-submit {
+            background: #5b9fd8;
+            color: #ffffff;
+        }
+
+        .btn-submit:hover {
+            background: #4a8bc2;
+            transform: translateY(-2px);
+        }
+
+        .btn-cancel {
+            background: #e2e8f0;
+            color: #64748b;
+        }
+
+        .btn-cancel:hover {
+            background: #cbd5e1;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+        }
+
+        .success-message svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
         }
 
         /* Stats Section */
@@ -436,6 +552,11 @@
                 grid-template-columns: 1fr;
                 padding: 50px 30px;
             }
+
+            .modal-content {
+                margin: 20% auto;
+                padding: 30px;
+            }
         }
     </style>
 </head>
@@ -460,13 +581,41 @@
         </nav>
     </header>
 
+    <!-- Resume Download Modal -->
+    <div id="resumeModal" class="modal">
+        <div class="modal-content">
+            <div id="formContent">
+                <h2>Request Resume Download</h2>
+                <p>Please provide your details to download the resume. A notification will be sent for approval.</p>
+                <form class="modal-form" id="resumeRequestForm">
+                    <input type="text" id="requesterName" placeholder="Your Name *" required>
+                    <input type="email" id="requesterEmail" placeholder="Your Email *" required>
+                    <input type="text" id="requesterPhone" placeholder="Your Phone Number">
+                    <input type="text" id="requesterCompany" placeholder="Company Name (Optional)">
+                    <div class="modal-buttons">
+                        <button type="submit" class="btn-submit">Request Download</button>
+                        <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            <div id="successContent" class="success-message">
+                <svg fill="#5b9fd8" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+                <h2>Request Submitted!</h2>
+                <p>Your download request has been sent. The resume will be available shortly.</p>
+                <button class="resume" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
     <main>
         <!-- Hero Section -->
         <section id="hero">
             <div class="left-content">
                 <h1>Hi, I'm Shahadat Khan Rabbi</h1>
                 <p>Results-driven professional with 13+ years of experience in customer service excellence, spare operations management, and technical auditing. ISO 9001:2015 Certified Internal Auditor with proven expertise in optimizing inventory control systems, conducting multi-branch compliance audits, and enhancing customer satisfaction across mobile, IT, and home appliance sectors.</p>
-                <a href="MD. SHAHADAT KHAN RABBI - CV (1).pdf" class="resume" target="_blank">Download Resume</a>
+                <button class="resume" onclick="openModal()">Download Resume</button>
                 <a href="qr.html" class="resume" target="_blank">QR Generator</a>
             </div>
             <div class="right-content">
@@ -552,5 +701,62 @@
     <footer>
         <p>&copy; 2025 Shahadat Khan. All rights reserved.</p>
     </footer>
+
+    <script>
+        function openModal() {
+            document.getElementById('resumeModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('resumeModal').style.display = 'none';
+            document.getElementById('formContent').style.display = 'block';
+            document.getElementById('successContent').style.display = 'none';
+            document.getElementById('resumeRequestForm').reset();
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('resumeModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        document.getElementById('resumeRequestForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('requesterName').value;
+            const email = document.getElementById('requesterEmail').value;
+            const phone = document.getElementById('requesterPhone').value;
+            const company = document.getElementById('requesterCompany').value;
+            
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('phone', phone);
+            formData.append('company', company);
+            formData.append('request_type', 'Resume Download Request');
+            formData.append('message', `Resume download request from:\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nCompany: ${company || 'Not provided'}\nTimestamp: ${new Date().toLocaleString()}`);
+            
+            try {
+                await fetch('https://formspree.io/f/xwkdwjnp', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                document.getElementById('formContent').style.display = 'none';
+                document.getElementById('successContent').style.display = 'block';
+                
+                setTimeout(() => {
+                    window.open('MD. SHAHADAT KHAN RABBI - CV (1).pdf', '_blank');
+                }, 1000);
+                
+            } catch (error) {
+                alert('There was an error submitting your request. Please try again.');
+            }
+        });
+    </script>
 </body>
 </html>
